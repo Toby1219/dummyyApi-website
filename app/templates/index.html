@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %} DummyApi {% endblock %}
+{% block content %}
+
+  <header>
+   <h1><a onclick="view_home()" style="color: white;">DummyApi.com</a></h1>
+   
+    <button class="menu-btn" onclick="toggleMenu()" >
+      <i class="fas fa-bars" id="menu-toggle_b" style="width: 20px; height: 20px; font-size:medium;"></i>
+    </button>
+    <div class="dropdown-menu" id="menuBox">
+      <a onclick="view_profile()" id="profile"><i class="fas fa-user" id="menu-toggle_u" style="margin-left: 10px;"></i> {{name.capitalize()}}</a>
+      <a onclick="view_home()">All Products</a>
+      <a onclick="about_func()">About</a>
+      <a href="{{url_for('auth_bp.logout')}}">Log out</a>
+    </div>    
+  </header>
+<main>
+  <div class="container">
+    <div class="sidebar">
+      <select class="dropdown-select section" id="option 1">
+        <option selected>Product Names</option>
+      </select>
+      <select class="dropdown-select section" id="option 2">
+        <option  selected disabled>Product SKU</option>
+      </select>
+      <select class="dropdown-select section" id="option 3">
+        <option selected>Category</option>
+      </select>
+      <div class="ch" id="">
+        <p><em>Sort By Price: </em></p>
+        <label>
+          <input type="radio" name="priceOpt" value="/api/product/price?sort=false">
+          Highest to Lowest
+        </label>
+        <label>
+          <input type="radio" name="priceOpt" value="/api/product/price?sort=true">
+          Lowest to Highest
+        </label>
+      </div>
+
+      <div class="msg-view">
+        <p class="view" id="view"><span style="font-weight: bold;">API says: </span>
+          <span id="viewMessage" style="font-weight: light;"></span>
+        </p>
+      </div>
+        <br>
+        <p class="total">Total product: 30</p>
+        <br>
+    </div>
+
+    <div class="content">
+      <br>
+      <div class="search-section">
+        <input type="text" id="searchInput" placeholder="Search... title, sku, category">
+        <button class="search-btn" onclick="search_product()">Search</button>
+      </div>
+      <textarea id="apikeys" rows="5" placeholder="API Keys" readonly style="font-size: 14px; resize: none;"></textarea>      
+      <textarea id="txt-data" rows="20" placeholder="Results..." style="resize: none;" readonly>
+        {{data if data else ""}}
+      </textarea>
+    </div>
+  </div>
+  
+</main>
+  <div class="pag" id="pag">
+    <div class="pagas">
+        <span class="prev-page" id="pag-btnPrev" style="padding: 15px;" onclick="pagnation_handler_pre()">
+          <i class="fas fa-angle-left"></i>
+        </span>
+        <span id="curpage">1</span> of <span id="total-page">6</span>
+        <span class="next-page" id="pag-btnNext" style="padding: 15px;" onclick="pagnation_handler_next()">
+          <i class="fas fa-angle-right"></i>
+        </span>
+    </div>
+  </div>
+
+&nbsp;
+
+
+{% endblock %}
