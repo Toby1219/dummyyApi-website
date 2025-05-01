@@ -5,6 +5,28 @@ from dotenv import load_dotenv
 # Load environment variables from a .env file
 load_dotenv()
 
+"""
+Follow for creating your own .env file 
+
+# Secret key for securely signing cookies and other data
+SECRETE_KEY=your_super_secret_key
+
+# Database connection URL (e.g., PostgreSQL, MySQL, SQLite, etc.)
+DATABASE_URL=your_database_connection_url
+
+# Disable SQLAlchemy event system (set to "False" for production)
+SQLALCHEMY_TRACK_MODIFICATION=False
+
+# Secret key for signing JWT tokens
+JWT_SECRETE_KEY=your_jwt_secret_key
+
+# Enable or disable JWT token blacklisting
+JWT_BLACKLIST_ENABLED=True
+
+# Specify which tokens to blacklist (e.g., access, refresh)
+JWT_BLACKLIST_TOKEN_CHECKS=access, refresh
+"""
+
 class Config:
     # Secret key for securely signing the session cookie and other secrets
     SECRET_KEY = os.getenv("SECRETE_KEY")  # Should be a long, random string
