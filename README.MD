@@ -60,21 +60,13 @@ This project is a Flask-based web application that uses JWT authentication and F
 - Flask
 - Flask-Login
 - Flask-JWT
-- install 
+- or just install 
 ```
-pip install -r requirements.txt]
+pip install -r requirements.txt
 ```
-
-## Future Improvements
-
-- Add a frontend UI for better visualization and interaction.
-- Implement user registration and management features.
-- Enhance search functionality with fuzzy matching.
 
 ## License
 
 This project is private and not licensed for public use.
 
 ---
-
-Feel free to modify or expand this based on your specific requirements or additional features! Let me know if you'd like help with any changes.
