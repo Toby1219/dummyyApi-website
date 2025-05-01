@@ -43,15 +43,15 @@ This project is a Flask-based web application that uses JWT authentication and F
 4. **Set up the database**:
    - Ensure the database is configured and populated with product data.
 
-5. **Add you .env file inorder to use it**
-   - 
+5. **Add you .env file**
+   -
 
 6. **Run the application**:
    ```
    flask run
    ```
 
-6. **Access the application**:
+7. **Access the application**:
    Open your browser and navigate to `http://127.0.0.1:5000`.
 
 ## Requirements
@@ -60,6 +60,7 @@ This project is a Flask-based web application that uses JWT authentication and F
 - Flask
 - Flask-Login
 - Flask-JWT
+- install [pip install -r requirements.txt]
 
 ## Future Improvements
 
