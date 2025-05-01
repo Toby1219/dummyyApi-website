@@ -30,17 +30,6 @@ JWT_BLACKLIST_TOKEN_CHECKS=access, refresh
 
 
 class Config:
-<<<<<<< HEAD
-    SECRET_KEY = os.getenv("SECRETE_KEY")
-    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
-    SQLALCHEMY_TRACK_MODIFICATION = os.getenv("SQLALCHEMY_TRACK_MODIFICATION")
-    JWT_SECRET_KEY = os.getenv("JWT_SECRETE_KEY")
-    JWT_BLACKLIST_ENABLED = os.getenv("JWT_BLACKLIST_ENABLED")
-    JWT_BLACKLIST_TOKEN_CHECKS = os.getenv("JWT_BLACKLIST_TOKEN_CHECKS")
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=10)
-    JWT_REFRESH_TOKEN = timedelta(days=7)
-    DOMAIN_URL = "http://127.0.0.1:5000"
-=======
     # Secret key for securely signing the session cookie and other secrets
     SECRET_KEY = os.getenv("SECRETE_KEY")  # Should be a long, random string
 
@@ -67,4 +56,3 @@ class Config:
 
     # Domain URL for the application
     DOMAIN_URL = "http://127.0.0.1:5000"  # Update this if deploying to a live server
->>>>>>> 5feef2cdac953103b9e0e9b537735d8e120f44b8
