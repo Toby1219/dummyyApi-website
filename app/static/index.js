@@ -5,7 +5,7 @@ const menu = document.getElementById('menuBox');
 let  icon_m = document.getElementById("menu-toggle_b");
 const apiTxtfield = document.getElementById("apikeys");
 const search_input = document.getElementById("searchInput");
-
+const loader = document.getElementById("loader");
 
 // all API Calls
 async function get_token() {
@@ -48,6 +48,7 @@ async function refresh_token_func(data_r, url){
 }
 
 async function request(url, display=false) {
+  loader.classList.remove("hidden")
    // Wait for token to be set
   const data_f = await get_token();
   
@@ -94,6 +95,10 @@ async function request(url, display=false) {
     menu.style.display = "none";
   }
   search_input.value = '';
+  setTimeout(()=>{
+    loader.classList.add("hidden");
+  }, 1000)
+  
 
 }
 
@@ -211,6 +216,7 @@ window.addEventListener("DOMContentLoaded", () => {
     to_checkValue('/api/product/price?sort=true')
     to_checkValue('/api/product/price?sort=false')
     get_msg();
+    loader.classList.add("hidden")
   })
 
 const options = document.querySelectorAll(".section");

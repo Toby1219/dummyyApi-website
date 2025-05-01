@@ -12,7 +12,9 @@
         <title>{% block title%}{% endblock %}</title>
     </head>
     <body>
-
+        <div id="loader" class="loader">
+            <div class="spinner"></div>
+        </div>
         <div class="notification" id="notification"></div>
         <div id="not" data-success="{{ '1' if signup_success else '0'}}"></div>
         {% block content%} {% endblock %}
