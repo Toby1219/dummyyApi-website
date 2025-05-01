@@ -11,6 +11,6 @@ class Config:
     JWT_SECRET_KEY = os.getenv("JWT_SECRETE_KEY")
     JWT_BLACKLIST_ENABLED = os.getenv("JWT_BLACKLIST_ENABLED")
     JWT_BLACKLIST_TOKEN_CHECKS = os.getenv("JWT_BLACKLIST_TOKEN_CHECKS")
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=8)
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=10)
     JWT_REFRESH_TOKEN = timedelta(days=7)
     DOMAIN_URL = "http://127.0.0.1:5000"

@@ -3,7 +3,7 @@ from .config import Config
 from .extension import db, jwt, login_manager
 from .utils.to_sql import json_to_sql
 from .models.model import UserAccount
-from .schemas.schema import UserAccSchema
+from .models.forms import LoginForm
 from .extension import message_handler, reader
 from flask_login import current_user
 
@@ -33,13 +33,6 @@ def create_app():
     @login_manager.user_loader
     def load_user(user_id):
         return UserAccount.query.get(int(user_id))
-
-    @app.before_request
-    def reqiure_signup():
-        if request.endpoint in ["auth_bp.register", "static"]:
-            return
-        if not current_user.is_authenticated:
-            return render_template("login.html")
     
     @jwt.expired_token_loader
     def expired_token(jwt_header, jwt_payload):
