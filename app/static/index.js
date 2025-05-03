@@ -24,7 +24,6 @@ async function get_token() {
 }
 
 async function refresh_token_func(data_r, url){
-  console.log("401 refreshing token ")
   // const domain_name = 'http://127.0.0.1:5000/';
   try {
     // const response = await fetch(`${domain_name}auth/refresh`, {
@@ -39,8 +38,6 @@ async function refresh_token_func(data_r, url){
     if (r_token.message){
       return null;
     }else{
-      // data = await get_token()
-      // console.log("Function get_token ", data) 
       request(url)
     }
   } catch (error) {
@@ -118,7 +115,6 @@ async function view_profile(){
 }
 
 function search_product(){
-  console.log("Search ", search_input.value);
   request(`/api/product/s=${search_input.value}`);
 }
 
