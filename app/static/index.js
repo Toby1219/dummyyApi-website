@@ -28,7 +28,7 @@ async function refresh_token_func(data_r, url){
   // const domain_name = 'http://127.0.0.1:5000/';
   try {
     // const response = await fetch(`${domain_name}auth/refresh`, {
-    const response = await fetch('auth/refresh', {
+    const response = await fetch('/auth/refresh', {
       method: "GET",
       headers: {
         'Authorization': `Bearer ${data_r.refresh_token}`,
@@ -110,17 +110,17 @@ function about_func(){
 }
 
 async function view_home(){
-  await request("api/product/all?page=1"); 
+  await request("/api/product/all?page=1"); 
 }
 
 async function view_profile(){
-  await request("auth/whoami", true);
+  await request("/auth/whoami", true);
 
 }
 
 function search_product(){
   console.log("Search ", search_input.value);
-  request(`api/product/s=${search_input.value}`);
+  request(`/api/product/s=${search_input.value}`);
 }
 
 //end all api calls
@@ -136,7 +136,7 @@ async function pagnation_handler_pre(){
     if (Number(current_page.innerText) < 7 & Number(current_page.innerText) != 1){
       pageNum--;
       current_page.innerText = pageNum
-      await request(`api/product/all?page=${current_page.innerText}`)
+      await request(`/api/product/all?page=${current_page.innerText}`)
       next_btn.style.visibility = 'visible';
     }
     prev_btn.addEventListener("click", function(){
@@ -153,7 +153,7 @@ async function pagnation_handler_next(){
     if (Number(current_page.innerText) > 0 & Number(current_page.innerText) != 6){
       pageNum++;
       current_page.innerText = pageNum
-      await request(`api/product/all?page=${current_page.innerText}`)
+      await request(`/api/product/all?page=${current_page.innerText}`)
       prev_btn.style.visibility = "visible"
     }
     next_btn.addEventListener("click", function(){
@@ -201,7 +201,7 @@ function loadSidebar(id_, pram){
     for (let dat of data){
       if (!added_item.includes(dat)) {
           let option_tag = document.createElement("option");
-          option_tag.value = `api/product/search_${pram}=${encodeURIComponent(dat)}`;
+          option_tag.value = `/api/product/search_${pram}=${encodeURIComponent(dat)}`;
           option_tag.id = "option";
           option_tag.name = "opt-text";
           option_tag.textContent = dat;
