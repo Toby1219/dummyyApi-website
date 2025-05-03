@@ -58,7 +58,7 @@ def role_required(*roles):
             verify_jwt_in_request()
             claims = get_jwt()
             if claims.get("role") not in roles:
-                return flash(f"Access denied: {claims.get("role")}", "error"), 403
+                return flash(f"Access denied: {claims.get('role')}", "error"), 403
             return fn(*args, **kwargs)
         return decorator
     return wrapper
