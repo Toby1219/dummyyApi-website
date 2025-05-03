@@ -49,7 +49,7 @@ class Config:
     JWT_BLACKLIST_TOKEN_CHECKS = os.getenv("JWT_BLACKLIST_TOKEN_CHECKS")  # Example: "access, refresh"
 
     # Expiration time for access tokens
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=8)  # Adjust as needed for security and usability
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=10)  # Adjust as needed for security and usability
 
     # Expiration time for refresh tokens
     JWT_REFRESH_TOKEN = timedelta(days=7)  # Adjust as needed for security and usability

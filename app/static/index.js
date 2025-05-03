@@ -67,7 +67,6 @@ async function request(url, display=false) {
   // if (!url.includes(domain_name)) {
   //   url = `${domain_name}${url}`;
   // }
-
   try {
     const response = await fetch(url, {
       method: "GET",
@@ -202,7 +201,7 @@ function loadSidebar(id_, pram){
       if (!added_item.includes(dat)) {
           let option_tag = document.createElement("option");
           option_tag.value = `/api/product/search_${pram}=${encodeURIComponent(dat)}`;
-          option_tag.id = "option";
+          option_tag.id = "option_";
           option_tag.name = "opt-text";
           option_tag.textContent = dat;
           section_tag.appendChild(option_tag);
@@ -225,7 +224,7 @@ window.addEventListener("DOMContentLoaded", () => {
 const options = document.querySelectorAll(".section");
 
 options.forEach(option => {
-  option.addEventListener('click', async function() {
+  option.addEventListener('change', async function() {
     if (!current_url.includes('/auth')){
       const selected = option.value;
       if (selected) {
