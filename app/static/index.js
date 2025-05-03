@@ -25,9 +25,10 @@ async function get_token() {
 
 async function refresh_token_func(data_r, url){
   console.log("401 refreshing token ")
-  const domain_name = 'http://127.0.0.1:5000/';
+  // const domain_name = 'http://127.0.0.1:5000/';
   try {
-    const response = await fetch(`${domain_name}auth/refresh`, {
+    // const response = await fetch(`${domain_name}auth/refresh`, {
+    const response = await fetch('auth/refresh', {
       method: "GET",
       headers: {
         'Authorization': `Bearer ${data_r.refresh_token}`
@@ -60,11 +61,11 @@ async function request(url, display=false) {
     apiTxtfield.style.display = 'none';
   }
   
-  const domain_name = 'http://127.0.0.1:5000/';
+  // const domain_name = 'http://127.0.0.1:5000/';
 
-  if (!url.includes(domain_name)) {
-    url = `${domain_name}${url}`;
-  }
+  // if (!url.includes(domain_name)) {
+  //   url = `${domain_name}${url}`;
+  // }
 
   try {
     const response = await fetch(url, {
