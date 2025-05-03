@@ -31,7 +31,8 @@ async function refresh_token_func(data_r, url){
     const response = await fetch('auth/refresh', {
       method: "GET",
       headers: {
-        'Authorization': `Bearer ${data_r.refresh_token}`
+        'Authorization': `Bearer ${data_r.refresh_token}`,
+        "Content-Type": "application/json"
       }
     });
     const r_token = await response.json();
@@ -71,7 +72,8 @@ async function request(url, display=false) {
     const response = await fetch(url, {
       method: "GET",
       headers: {
-        'Authorization': `Bearer ${data_f.token}`
+        'Authorization': `Bearer ${data_f.token}`,
+        "Content-Type": "application/json"
       }
     });
     if (response.status === 401){
