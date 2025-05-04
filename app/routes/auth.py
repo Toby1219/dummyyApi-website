@@ -28,10 +28,18 @@ def register():
     if form.validate_on_submit():
         account_name = UserAccount.query.filter_by(username=form.username.data).first()
         account_email = UserAccount.query.filter_by(email=form.email.data).first()
+        print(form.password.data)
+        print(len(form.password.data))
+        print()
         if account_name:
             flash("User name already exist", "error")
         elif account_email:
             flash("Email already exist", 'error')
+        # elif len(form.username.data) <= 2:
+        #     flash("Username too short", "error")
+        # elif len(form.password.data) <= 5:
+        #     print(form.password.data)
+        #     flash("Password too short more than 5 charaters required", "error")
         else:
             tk, r_tk, issued, exp = gen_token(username=form.username.data, role='user')
             user = UserAccount(username=form.username.data, email=form.email.data, role="user",
@@ -58,7 +66,6 @@ def logIn():
             login_user(user)
             return redirect(url_for('view_bp.home'))
         else:
-            print("err")
             flash("Invalid log in details", "error")
     return render_template("login.html", form=form)
 

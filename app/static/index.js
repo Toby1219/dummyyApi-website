@@ -3,9 +3,47 @@ const txtArea = document.getElementById("txt-data");
 const paganationButtons = document.getElementById("pag");
 const menu = document.getElementById('menuBox');
 let  icon_m = document.getElementById("menu-toggle_b");
-const apiTxtfield = document.getElementById("apikeys");
 const search_input = document.getElementById("searchInput");
 const loader = document.getElementById("loader");
+
+
+// Update json view
+function syntaxHighlight(json) {
+  if (typeof json !== 'string') {
+    json = JSON.stringify(json, null, 4);
+  }
+  json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return json.replace(
+    /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(?:\s*:)?|\b(true|false|null|\d+)\b)/g,
+    function (match) {
+      let cls = 'number';
+      if (/^"/.test(match)) {
+        if (/:$/.test(match)) {
+          cls = 'key';
+        } else {
+          cls = 'string';
+        }
+      } else if (/true|false/.test(match)) {
+        cls = 'boolean';
+      } else if (/null/.test(match)) {
+        cls = 'null';
+      }
+      return `<span class="${cls}">${match}</span>`;
+    }
+  );
+}
+
+//document.getElementById('json').innerHTML = syntaxHighlight(data);
+
+function copyJSON() {
+  const el = document.createElement('textarea');
+  el.value = JSON.stringify(data, null, 2);
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+  alert('JSON copied!');
+}
 
 // all API Calls
 async function get_token() {
@@ -51,19 +89,6 @@ async function request(url, display=false) {
    // Wait for token to be set
   const data_f = await get_token();
   
-
-  if (display){
-    apiTxtfield.style.display = 'block';
-    apiTxtfield.innerText = data_f.token;
-  }else{
-    apiTxtfield.style.display = 'none';
-  }
-  
-  // const domain_name = 'http://127.0.0.1:5000/';
-
-  // if (!url.includes(domain_name)) {
-  //   url = `${domain_name}${url}`;
-  // }
   try {
     const response = await fetch(url, {
       method: "GET",
@@ -76,7 +101,9 @@ async function request(url, display=false) {
       await refresh_token_func(data_f, url)
     }
     const data = await response.json();
-    txtArea.value = JSON.stringify(data, null, 4);
+    console.log(data)
+    console.log(typeof data)
+    txtArea.innerHTML = syntaxHighlight(data);
     get_msg();
   
 
@@ -110,7 +137,7 @@ async function view_home(){
 }
 
 async function view_profile(){
-  await request("/auth/whoami", true);
+  await request("/auth/whoami", display=true);
 
 }
 
@@ -173,6 +200,7 @@ function toggleMenu() {
     const button = document.querySelector('.menu-btn');
     if (!menu.contains(e.target) && !button.contains(e.target)) {
       menu.style.display = 'none';
+      icon_m.classList.toggle('fa-bars');
     }
   });
 
@@ -248,6 +276,7 @@ function to_checkValue(arg){
     }
   });
 }
+
 
 
 

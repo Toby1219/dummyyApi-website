@@ -36,6 +36,7 @@
           <input type="radio" name="priceOpt" value="/api/product/price?sort=false">
           Highest to Lowest
         </label>
+        <br>
         <label>
           <input type="radio" name="priceOpt" value="/api/product/price?sort=true">
           Lowest to Highest
@@ -58,10 +59,10 @@
         <input type="text" id="searchInput" placeholder="Search... title, sku, category">
         <button class="search-btn" onclick="search_product()">Search</button>
       </div>
-      <textarea id="apikeys" rows="5" placeholder="API Keys" readonly style="font-size: 14px; resize: none;"></textarea>      
-      <textarea id="txt-data" rows="20" placeholder="Results..." style="resize: none;" readonly>
-        {{data if data else ""}}
-      </textarea>
+      <div class="data-holder">
+        <button class="smallBtn" onclick="copyJSON(this)">Copy</button>
+        <pre id="txt-data" data-placeholder="Data from API"></pre>
+      </div>      
     </div>
   </div>
   
