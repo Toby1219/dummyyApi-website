@@ -47,7 +47,7 @@ def register():
                                token_created_at=str(issued), token_exp_at=str(exp))
             user.set_password(form.password.data)
             user.create_user()
-            flash('Registered successfully!', "success")
+            flash('✅ Registered successfully!', "success")
             login_user(user,remember=True)
             return redirect(url_for('view_bp.home'))
     return render_template('register.html', form=form), 200
@@ -62,7 +62,7 @@ def logIn():
         user = UserAccount.query.filter_by(username=username).first()
         print(user)
         if user and user.check_password(password):
-            flash('log in successfully!', "success")
+            flash('✅ log in successfully!', "success")
             login_user(user, remember=True)
             return redirect(url_for('view_bp.home'))
         else:
@@ -88,7 +88,7 @@ def refresh():
 
 @auth_bp.route('/logout')
 def logout():
-    flash('log out successfully!', "success")
+    flash('✅ log out successfully!', "success")
     logout_user()
     return redirect(url_for('auth_bp.logIn'))
 
