@@ -67,34 +67,31 @@
       background-color: #28527a;
     }
 
-    footer {
-      background: #2b2d42;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-      position: relative;
-    }
 
-    .footer-buttons {
+    footer {
+      background: #2d3748;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .footer-links {
       display: flex;
       justify-content: center;
-      gap: 1rem;
-      margin-bottom: 0.5rem;
+      gap: 2rem;
     }
-
-    .footer-buttons button {
-      background: transparent;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s;
+    
+    .footer-links a {
+      color: #cbd5e0;
+      text-decoration: none;
     }
-
-    .footer-buttons button:hover {
-      background: rgba(255, 255, 255, 0.1);
+    .footer-links a:hover{
+      color: whitesmoke;
     }
+    
 
 
     .overlay-dropdown {
@@ -141,6 +138,7 @@
         background: #28527a;
       }
   </style>
+  <script src="{{ url_for('static', filename='index.js')}}" defer></script>
 </head>
 <body>
 
@@ -158,30 +156,25 @@
   </main>
 
   <footer>
-    <div class="footer-buttons">
-      <button onclick="toggleDropdown('about')">About</button>
-      <button onclick="toggleDropdown('contact')">Contact</button>
+    <div class="footer-links">
+        <a onclick="toggleDropdown('contact')">Contact</a>
+        <a onclick="toggleDropdown('about')">About</a>
     </div>
     <div id="about" class="overlay-dropdown">
         <div class="overlay-content">
-          <p>Dummyweb is a demo website for UI practice. Built with love in 2025.</p>
-          <button onclick="closeDropdown()">Close</button>
+        <p>Dummyweb is a demo website for UI practice. Built with love in 2025.</p>
+        <button onclick="closeDropdown()">Close</button>
         </div>
-      </div>
-      
-      <div id="contact" class="overlay-dropdown">
+    </div>
+  
+    <div id="contact" class="overlay-dropdown">
         <div class="overlay-content">
-          <p>Email: support@dummyweb.com<br>Twitter: @dummyweb</p>
-          <button onclick="closeDropdown()">Close</button>
+        <p>Email: support@dummyweb.com<br>Twitter: @dummyweb</p>
+        <button onclick="closeDropdown()">Close</button>
         </div>
-      </div>
-      <br>
-      <div>&copy; 2025</div>
-  </footer>
-
-  <script>
-
-  </script>
-
+    </div>
+    <br>
+    <div>&copy; 2025</div>
+</footer>
 </body>
 </html>

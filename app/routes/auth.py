@@ -54,7 +54,6 @@ def register():
 
 
 @auth_bp.route("/login", methods=['GET', 'POST'])
-@login_required
 def logIn():
     form = LoginForm()
     if form.validate_on_submit():
