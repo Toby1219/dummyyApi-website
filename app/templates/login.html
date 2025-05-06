@@ -5,7 +5,7 @@
   <div class="signup-box" id="signupBox">
     <div class="cancel" onclick="closeBox()">X</div>
     <h2 id="form_title">Log In</h2>
-    <form id="signupForm" method="POST">
+    <form action="/auth/login" id="signupForm" method="POST">
       {{ form.hidden_tag() }}
       <div>{{form.username(id='username', placeholder='Username')}}</div>
       <div>{{form.password(id='password', placeholder='Password')}}</div>
