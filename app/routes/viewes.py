@@ -8,7 +8,7 @@ view_bp = Blueprint("view_bp", __name__)
 @view_bp.route('/home')
 def home():
     if not current_user.is_authenticated:
-        return redirect(url_for('auth_bp.logIn'))
+        return redirect(url_for('homepage'))
     message_handler(f"Welcome {current_user.username} this is the Home view")
     return render_template("index.html", signup_success=True, name=current_user.username), 200
 

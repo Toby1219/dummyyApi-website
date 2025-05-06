@@ -34,14 +34,29 @@ function syntaxHighlight(json) {
 }
 
 function copyJSON() {
-  const el = document.createElement('textarea');
-  el.value = JSON.stringify(data, null, 2);
-  document.body.appendChild(el);
-  el.select();
-  document.execCommand('copy');
-  document.body.removeChild(el);
-  alert('JSON copied!');
+  const copy_tag = document.getElementById("smallBtn");
+  const pre = document.getElementById("txt-data");
+  const text = pre.textContent || pre.innerText;
+
+  navigator.clipboard.writeText(text)
+    // .then(() => {
+    //   alert('JSON copied to clipboard!');
+      
+    // })
+    // .catch(err => {
+    //   console.error('Copy failed', err);
+    //   alert('Failed to copy JSON.');
+    // });
+
+  copy_tag.addEventListener("click", () => {
+      copy_tag.innerText = "✓✓ Copied";
+      setTimeout(()=>{
+        copy_tag.innerText = "copy";
+      }, 1000)
+    })
+  
 }
+
 
 // all API Calls
 async function get_token() {
