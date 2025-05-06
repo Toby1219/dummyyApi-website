@@ -55,9 +55,12 @@ def create_app():
         return jsonify(
             "Bloced Token: get a new by login token>"), 401
 
-    @app.errorhandler(404)
-    def page_not_found(e):
-        return redirect(url_for('auth_bp.logIn'))
-        
+    # @app.errorhandler(404)
+    # def page_not_found(e):
+    #     return redirect(url_for('auth_bp.logIn'))
+
+    @app.route("/")
+    def homepage():
+        return render_template("home.html")   
     return app
     

@@ -33,8 +33,6 @@ function syntaxHighlight(json) {
   );
 }
 
-//document.getElementById('json').innerHTML = syntaxHighlight(data);
-
 function copyJSON() {
   const el = document.createElement('textarea');
   el.value = JSON.stringify(data, null, 2);
@@ -62,9 +60,7 @@ async function get_token() {
 }
 
 async function refresh_token_func(data_r, url){
-  // const domain_name = 'http://127.0.0.1:5000/';
   try {
-    // const response = await fetch(`${domain_name}auth/refresh`, {
     const response = await fetch('/auth/refresh', {
       method: "GET",
       headers: {
@@ -116,14 +112,13 @@ async function request(url, display=false) {
 
   // Toggle menu
   if (menu.style.display === "block") {
-    icon_m.classList.toggle('fa-x');
-    icon_m.classList.toggle('fa-bars');
+
     menu.style.display = "none";
   }
   search_input.value = '';
-  setTimeout(()=>{
+  setTimeout(()=>{ 
     loader.classList.add("hidden");
-  }, 1000)
+  }, 990)
   
 
 }
@@ -141,8 +136,8 @@ async function view_profile(){
 
 }
 
-function search_product(){
-  request(`/api/product/s=${search_input.value}`);
+async function search_product(){
+  await request(`/api/product/s=${search_input.value}`);
 }
 
 //end all api calls
@@ -190,8 +185,6 @@ async function pagnation_handler_next(){
 // end pagnation handlers
 
 function toggleMenu() {
-    icon_m.classList.toggle('fa-x');
-    icon_m.classList.toggle('fa-bars');
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
   }
 
@@ -200,7 +193,6 @@ function toggleMenu() {
     const button = document.querySelector('.menu-btn');
     if (!menu.contains(e.target) && !button.contains(e.target)) {
       menu.style.display = 'none';
-      icon_m.classList.toggle('fa-bars');
     }
   });
 
@@ -278,6 +270,24 @@ function to_checkValue(arg){
 }
 
 
+function toggleDropdown(id) {
+  // Close all dropdowns
+  document.querySelectorAll('.overlay-dropdown').forEach(div => div.classList.remove('show'));
+  
+  // Open selected one
+  document.getElementById(id).classList.add('show');
+}
+
+function closeDropdown() {
+  document.querySelectorAll('.overlay-dropdown').forEach(div => div.classList.remove('show'));
+}
+
+// Close when clicking outside content
+document.querySelectorAll('.overlay-dropdown').forEach(el => {
+  el.addEventListener('click', function(e) {
+    if (e.target === el) closeDropdown();
+  });
+});
 
 
 

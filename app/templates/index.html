@@ -6,7 +6,7 @@
    <h1><a onclick="view_home()" style="color: white;">DummyApi.com</a></h1>
    
     <button class="menu-btn" onclick="toggleMenu()" >
-      <i class="fas fa-bars" id="menu-toggle_b" style="width: 20px; height: 20px; font-size:medium;"></i>
+      <span id="menu-toggle_b">Menu</span>
     </button>
     <div class="dropdown-menu" id="menuBox">
       <a onclick="view_profile()" id="profile"><i class="fas fa-user" id="menu-toggle_u" style="margin-left: 10px;"></i> {{name.capitalize()}}</a>
@@ -16,6 +16,18 @@
     </div>    
   </header>
 <main>
+    <div class="content">
+      <br>
+      <div class="search-section">
+        <input type="text" id="searchInput" placeholder="Search... title, sku, category">
+        <button class="search-btn" onclick="search_product()">Search</button>
+      </div>
+      <div class="data-holder">
+        <button class="smallBtn" onclick="copyJSON(this)">Copy</button>
+        <pre id="txt-data" data-placeholder="Data from API"></pre>
+      </div>      
+    </div>
+  </div>
   <div class="container">
     <div class="sidebar">
       <label><em>Product Names</em>:</label>
@@ -52,20 +64,6 @@
         <p class="total">Total product: 30</p>
         <br>
     </div>
-
-    <div class="content">
-      <br>
-      <div class="search-section">
-        <input type="text" id="searchInput" placeholder="Search... title, sku, category">
-        <button class="search-btn" onclick="search_product()">Search</button>
-      </div>
-      <div class="data-holder">
-        <button class="smallBtn" onclick="copyJSON(this)">Copy</button>
-        <pre id="txt-data" data-placeholder="Data from API"></pre>
-      </div>      
-    </div>
-  </div>
-  
 </main>
   <div class="pag" id="pag">
     <div class="pagas">

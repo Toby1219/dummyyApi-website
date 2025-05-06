@@ -6,7 +6,7 @@ from ..config import Config
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required
 from datetime import datetime
 from ..extension import message_handler
-from flask_login import login_user, logout_user, current_user 
+from flask_login import login_user, logout_user, current_user, login_required
 from ..models.forms import LoginForm, RegisterForm
 
 auth_bp = Blueprint("auth_bp", __name__)
@@ -48,12 +48,13 @@ def register():
             user.set_password(form.password.data)
             user.create_user()
             flash('Registered successfully!', "success")
-            login_user(user)
+            login_user(user,remember=True)
             return redirect(url_for('view_bp.home'))
     return render_template('register.html', form=form), 200
 
 
 @auth_bp.route("/login", methods=['GET', 'POST'])
+@login_required
 def logIn():
     form = LoginForm()
     if form.validate_on_submit():
@@ -63,7 +64,7 @@ def logIn():
         print(user)
         if user and user.check_password(password):
             flash('log in successfully!', "success")
-            login_user(user)
+            login_user(user, remember=True)
             return redirect(url_for('view_bp.home'))
         else:
             flash("Invalid log in details", "error")

@@ -56,3 +56,5 @@ class Config:
 
     # Domain URL for the application
     DOMAIN_URL = "http://127.0.0.1:5000"  # Update this if deploying to a live server
+
+    REMEMBER_COOKIE_DURATION = timedelta(days=int(os.getenv("REMEMBER_COOKIE_DURATION")))
