@@ -32,9 +32,9 @@ def register():
         print(len(form.password.data))
         print()
         if account_name:
-            flash("User name already exist", "error")
+            flash("❌ User name already exist", "error")
         elif account_email:
-            flash("Email already exist", 'error')
+            flash("❌ Email already exist", 'error')
         # elif len(form.username.data) <= 2:
         #     flash("Username too short", "error")
         # elif len(form.password.data) <= 5:
@@ -66,7 +66,7 @@ def logIn():
             login_user(user, remember=True)
             return redirect(url_for('view_bp.home'))
         else:
-            flash("Invalid log in details", "error")
+            flash("❌ Invalid log in details", "error")
     return render_template("login.html", form=form)
 
 
